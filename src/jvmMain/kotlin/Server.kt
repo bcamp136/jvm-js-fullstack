@@ -49,6 +49,15 @@ fun main() {
                     call.respond(HttpStatusCode.OK)
                 }
             }
+            get("/") {
+                call.respondText(
+                    this::class.java.classLoader.getResource("index.html")!!.readText(),
+                    ContentType.Text.Html
+                )
+            }
+            static("/") {
+                resources("")
+            }
         }
     }.start(wait = true)
 }
